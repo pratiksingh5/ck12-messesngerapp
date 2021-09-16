@@ -21,7 +21,11 @@
       <img src="https://image.flaticon.com/icons/png/512/147/147144.png" alt="">
       <h2><%= user.name %></h2>
       <h2><%= user.email %></h2>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora culpa aliquid vitae excepturi consequuntur. Adipisci maxime temporibus a quo iure fugit. Dolore officia maxime tempora quas similique ducimus quisquam unde.</p>
+      <form action="/chat" method="POST">
+        <input type="text" name="name" placeholder="Your Name in Chat room" required>
+        <input type="submit" value="Join Chat">
+      </form>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora culpa aliquid vitae excepturi consequunturunde.</p>
     
       <a href="/">Logout</a>
      

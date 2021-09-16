@@ -11,7 +11,7 @@ passport.use(new localStrategy(userModel.authenticate()));
 
 /* GET home page. */
 router.get("/", function (req, res) {
-  res.render("index");
+  res.render("index",{errors:false});
 });
 
 router.post("/reg", function (req, res) {
@@ -52,6 +52,11 @@ router.post(
 router.get("/logout", function (req, res) {
   req.logOut();
   res.redirect("/");
+});
+
+router.post('/chat', function(req, res, next) {
+  let name= req.body.name;
+  res.render('chat',{name});
 });
 
 

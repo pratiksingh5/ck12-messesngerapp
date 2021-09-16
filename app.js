@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const socket_io    = require( "socket.io" );
+
 
 
 const indexRouter = require('./routes/index');
@@ -14,6 +16,8 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+
 
 app.use(require('express-session')({
   resave: false,
@@ -32,6 +36,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+var io           = socket_io();
+app.io           = io;
+
+
+io.on('connection', function(socketUser){
+  socketUser.on('new msg', function(msg){
+    io.emit('msg', msg);
+  })
+});
+
 
 app.use('/', indexRouter);
 
